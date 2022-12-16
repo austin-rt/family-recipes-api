@@ -13,6 +13,7 @@ const RecipeSchema = new Schema(
       },
     ],
     wines: [{ type: Schema.Types.ObjectId, ref: 'Wine' }],
+    wineTypes: [{ type: Schema.Types.ObjectId, ref: 'WineCategory' }],
     directions: [{ type: String, required: true }],
     totalMinutes: { type: Number, required: true },
   },
