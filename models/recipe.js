@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 const RecipeSchema = new Schema(
   {
     title: { type: String, required: true },
-    image: { type: String, required: true },
-    category: [{ type: Schema.Types.ObjectId, ref: 'Category', required: true }],
+    image: { type: String, required: false },
+    categories: [{ type: Schema.Types.ObjectId, ref: 'RecipeCategory' }],
     ingredients: [
       {
         ingredient: { type: Schema.Types.ObjectId, ref: 'Ingredient', required: true },
@@ -13,7 +13,7 @@ const RecipeSchema = new Schema(
         unit: { type: String, required: true },
       },
     ],
-    wines: [{ type: Schema.Types.ObjectId, ref: 'Wine', required: true }],
+    wines: [{ type: Schema.Types.ObjectId, ref: 'Wine' }],
     directions: [{ type: String, required: true }],
     totalMinutes: { type: Number, required: true },
   },
