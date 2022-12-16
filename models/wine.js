@@ -41,7 +41,7 @@ const WineSchema = new Schema(
     foundAt: [{ type: String }],
     price: { type: Types.Decimal128 },
     bottleSizeInMl: { type: Number, default: 750 },
-    ratings: [{ type: Number, min: 1, max: 5, default: 2.5 }],
+    rating: { type: Number, min: 1, max: 5, default: 2.5 },
   },
   { timestamps: true }
 );

@@ -56,7 +56,7 @@ const DeleteRecipeCategory = async (req, res) => {
     if (deleted) {
       return res.status(200).send({ msg: `${name} deleted from recipe categories` });
     }
-    throw new Error(`Recipe category ${name} not found`);
+    throw new Error(`${name} not found in recipe categories`);
   } catch (err) {
     return res.status(500).send(err.message);
   }

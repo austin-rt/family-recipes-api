@@ -54,7 +54,7 @@ const DeleteIngredient = async (req, res) => {
     if (deleted) {
       return res.status(200).send({ msg: `${name} deleted from ingredients` });
     }
-    throw new Error({ msg: `${name} not found` });
+    throw new Error({ msg: `${name} not found in ingredients` });
   } catch (err) {
     return res.status(500).send(err.message);
   }

@@ -56,7 +56,7 @@ const DeleteWineCategory = async (req, res) => {
     if (deleted) {
       return res.status(200).send({ msg: `${name} deleted from wine categories` });
     }
-    throw new Error({ msg: `${name} not found` });
+    throw new Error({ msg: `${name} not found in wine categories` });
   } catch (err) {
     return res.status(500).send(err.message);
   }
