@@ -10,7 +10,7 @@ const RecipeCategorySchema = new Schema(
         'vegan',
         'chicken',
         'beef',
-        'porh',
+        'pork',
         'seafood',
         'side',
         'salad',
