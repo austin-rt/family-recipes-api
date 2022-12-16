@@ -2,11 +2,12 @@ const { Schema } = require('mongoose');
 
 const WineCategorySchema = new Schema(
   {
-    title: [
+    name: [
       {
         type: String,
-        enum: ['Red', 'White', 'Rose', 'Sparkling', 'Dessert', 'Fortified', 'Natural', 'Pet Nat'],
+        enum: ['red', 'white', 'rose', 'sparkling', 'dessert', 'fortified', 'natural', 'pet nat'],
         required: true,
+        lowercase: true,
       },
     ],
   },

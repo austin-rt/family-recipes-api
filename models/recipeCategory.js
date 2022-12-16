@@ -2,7 +2,26 @@ const { Schema } = require('mongoose');
 
 const RecipeCategorySchema = new Schema(
   {
-    title: { type: String, required: true, unique: true },
+    name: {
+      type: String,
+      enum: [
+        'main',
+        'vegitarian',
+        'vegan',
+        'chicken',
+        'beef',
+        'porh',
+        'seafood',
+        'side',
+        'salad',
+        'soup',
+        'quick',
+        'few ingredients',
+      ],
+      required: true,
+      unique: true,
+      lowercase: true,
+    },
   },
   { timestamps: true }
 );

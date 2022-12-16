@@ -2,7 +2,7 @@ const { Schema } = require('mongoose');
 
 const RecipeSchema = new Schema(
   {
-    title: { type: String, required: true, unique: true },
+    name: { type: String, required: true, unique: true, lowercase: true },
     image: { type: String },
     categories: [{ type: Schema.Types.ObjectId, ref: 'RecipeCategory' }],
     ingredients: [

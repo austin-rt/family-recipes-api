@@ -2,7 +2,7 @@ const { Schema } = require('mongoose');
 
 const IngredientSchema = new Schema(
   {
-    title: { type: String, required: true, unique: true },
+    name: { type: String, required: true, unique: true, lowercase: true },
     image: { type: String },
   },
   { timestamps: true }

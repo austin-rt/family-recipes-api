@@ -21,14 +21,14 @@ const CreateIngredient = async (req, res) => {
   }
 };
 
-const GetIngredient = async (req, res) => {
+const GetIngredientByName = async (req, res) => {
   try {
-    const { id } = req.params;
-    const ingredient = await Ingredient.findById(id);
+    const { name } = req.params;
+    const ingredient = await Ingredient.findOne({ name: name });
     if (ingredient) {
       return res.status(200).json({ ingredient });
     }
-    return res.status(404).send('Ingredient with the specified ID does not exist');
+    return res.status(404).send({ msg: `${name} does not exist in ingredients` });
   } catch (err) {
     return res.status(500).send(err.message);
   }
@@ -36,16 +36,12 @@ const GetIngredient = async (req, res) => {
 
 const UpdateIngredient = async (req, res) => {
   try {
-    const { id } = req.params;
-    await Ingredient.findByIdAndUpdate(id, req.body, { new: true }, (err, ingredient) => {
-      if (err) {
-        res.status(500).send(err);
-      }
-      if (!ingredient) {
-        res.status(500).send(`Ingredient with id: ${id} not found`);
-      }
-      return res.status(200).json(ingredient);
-    });
+    const { name } = req.params;
+    const ingredient = await Ingredient.findOneAndUpdate({ name: name }, req.body, { new: true });
+    if (ingredient) {
+      return res.status(200).json({ ingredient });
+    }
+    throw new Error({ msg: `${name} not found in ingredients` });
   } catch (err) {
     return res.status(500).send(err.message);
   }
@@ -53,12 +49,12 @@ const UpdateIngredient = async (req, res) => {
 
 const DeleteIngredient = async (req, res) => {
   try {
-    const { id } = req.params;
-    const deleted = await Ingredient.findByIdAndDelete(id);
+    const { name } = req.params;
+    const deleted = await Ingredient.findOneAndDelete({ name: name });
     if (deleted) {
-      return res.status(200).send(`Deleted ingredient with id: ${id}`);
+      return res.status(200).send({ msg: `${name} deleted from ingredients` });
     }
-    throw new Error('Ingredient not found');
+    throw new Error({ msg: `${name} not found` });
   } catch (err) {
     return res.status(500).send(err.message);
   }
@@ -67,7 +63,7 @@ const DeleteIngredient = async (req, res) => {
 module.exports = {
   GetIngredients,
   CreateIngredient,
-  GetIngredient,
+  GetIngredientByName,
   UpdateIngredient,
   DeleteIngredient,
 };
