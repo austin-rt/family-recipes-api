@@ -14,6 +14,11 @@ app.use(logger('dev'));
 
 app.use('/api', routes);
 
+app.get('*', (req, res) => {
+  console.log('root wildcard, did you forget /api?');
+  res.send({ msg: 'root wildcard, did you forget /api?' });
+});
+
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

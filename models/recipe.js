@@ -1,10 +1,9 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { Schema } = require('mongoose');
 
 const RecipeSchema = new Schema(
   {
-    title: { type: String, required: true },
-    image: { type: String, required: false },
+    title: { type: String, required: true, unique: true },
+    image: { type: String },
     categories: [{ type: Schema.Types.ObjectId, ref: 'RecipeCategory' }],
     ingredients: [
       {
@@ -19,3 +18,5 @@ const RecipeSchema = new Schema(
   },
   { timestamps: true }
 );
+
+module.exports = RecipeSchema;

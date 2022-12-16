@@ -1,12 +1,11 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { Schema } = require('mongoose');
 
 const IngredientSchema = new Schema(
   {
-    title: { type: String, required: true },
-    image: { type: String, required: false },
+    title: { type: String, required: true, unique: true },
+    image: { type: String },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model('Ingredient', IngredientSchema);
+module.exports = IngredientSchema;

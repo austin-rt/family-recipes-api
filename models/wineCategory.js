@@ -1,12 +1,11 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { Schema } = require('mongoose');
 
 const WineCategorySchema = new Schema(
   {
     title: [
       {
         type: String,
-        enum: ['RED', 'WHITE', 'ROSE', 'SPARKLING', 'DESSERT', 'FORTIFIED', 'NATURAL', 'PET NAT'],
+        enum: ['Red', 'White', 'Rose', 'Sparkling', 'Dessert', 'Fortified', 'Natural', 'Pet Nat'],
         required: true,
       },
     ],
@@ -14,4 +13,4 @@ const WineCategorySchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('WineCategory', WineCategorySchema);
+module.exports = WineCategorySchema;

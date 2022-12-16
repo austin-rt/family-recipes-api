@@ -1,6 +1,14 @@
-const { Router } = require('express');
-const router = Router();
+const router = require('express').Router();
 
-router.get('/', (req, res) => res.send('This is the root route!'));
+const IngredientRouter = require('./IngredientRouter');
+
+router.use('/ingredients', IngredientRouter);
+// router.use('/recipe-categories', RecipeCategoriesRouter);
+// router.use('/recipes', RecipeRouter);
+// router.use('/wine-categories', WineCategoriesRouter);
+// router.use('/wines', WineRouter);
+// router.use('/auth', AuthRouter);
+
+router.get('/', (req, res) => res.send({ msg: '/api route' }));
 
 module.exports = router;
